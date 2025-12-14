@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 title 🔁 YavuzSite Otomatik Deploy Aracı
 cd /d "C:\Users\yvzta\OneDrive\Masaüstü\yavuzsite"
 
@@ -6,6 +7,15 @@ echo.
 echo 🚀 YavuzSite otomatik güncelleme başlatılıyor...
 echo ----------------------------------------------
 timeout /t 1 >nul
+
+:: 🔧 Git kullanıcı yapılandırması kontrol et
+git config user.name >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ⚙️ Git kullanıcı ayarları yapılandırılıyor...
+    git config user.name "Yavuz Tas"
+    git config user.email "yavuztas@users.noreply.github.com"
+    echo ✅ Git yapılandırması tamamlandı.
+)
 
 :: 🔍 Git durumu kontrol et
 git status
