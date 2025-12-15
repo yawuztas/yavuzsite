@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Toaster } from "react-hot-toast";
+import ContactForm from "./components/ContactForm";
 
 export default function HomePage() {
   const [lang, setLang] = useState("tr");
 
   const t = {
     tr: {
-      nav: ["Projeler", "Hakkında", "Temas"],
+      nav: ["Projeler", "Hakkında", "Blog", "Temas"],
       heroTitle: "Yavuz Taş — Yapay Zeka Geliştiricisi & Freelancer",
       heroDesc:
         "Akıllı otomasyon sistemleri, gelişmiş OCR çözümleri ve yapay zeka destekli ticaret botları geliştiriyorum. Teknolojiyi yaratıcı ve eğlenceli bir hale getirmeye inanıyorum.",
@@ -27,7 +29,7 @@ Projelerimde hem teknik mükemmeliyet hem de kullanıcı deneyimini eğlenceli h
       footer: "❤️ ile geliştirildi & Next.js / Tailwind destekli",
     },
     en: {
-      nav: ["Projects", "About", "Contact"],
+      nav: ["Projects", "About", "Blog", "Contact"],
       heroTitle: "Yavuz Taş — AI Developer & Freelancer",
       heroDesc:
         "I develop smart automation systems, advanced OCR solutions, and AI-powered trading bots. I believe in making technology creative and fun.",
@@ -70,6 +72,7 @@ My goal is to combine technical excellence with enjoyable user experiences.
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-[Poppins]">
+      <Toaster position="top-right" />
       {/* Navbar */}
       <nav className="flex justify-between items-center px-10 py-6 border-b border-gray-700 bg-gray-900/40 backdrop-blur-md">
         <div className="text-2xl font-semibold tracking-tight hover:text-blue-400 transition">
@@ -82,8 +85,11 @@ My goal is to combine technical excellence with enjoyable user experiences.
           <a href="#about" className="hover:text-blue-400 transition">
             {t[lang].nav[1]}
           </a>
-          <a href="#contact" className="hover:text-blue-400 transition">
+          <a href="/blog" className="hover:text-blue-400 transition">
             {t[lang].nav[2]}
+          </a>
+          <a href="#contact" className="hover:text-blue-400 transition">
+            {t[lang].nav[3]}
           </a>
         </div>
         <select
@@ -193,9 +199,14 @@ My goal is to combine technical excellence with enjoyable user experiences.
         <p className="text-gray-400 text-lg text-center mb-10 max-w-2xl mx-auto">
           {t[lang].contactDesc}
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
+        
+        {/* Contact Form */}
+        <ContactForm lang={lang} />
+
+        {/* Social Links */}
+        <div className="flex flex-wrap justify-center gap-6 mt-12">
           <motion.a
-            href="mailto:yavuztas@example.com"
+            href="mailto:yvztas@gmail.com"
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 rounded-xl text-lg font-medium hover:opacity-90 transition"
           >
@@ -209,11 +220,11 @@ My goal is to combine technical excellence with enjoyable user experiences.
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-3 bg-gray-800 border border-gray-600 px-8 py-4 rounded-xl text-lg font-medium hover:border-blue-400 transition"
           >
-            <span>👙</span>
+            <span>💻</span>
             <span>{t[lang].githubLabel}</span>
           </motion.a>
           <motion.a
-            href="https://linkedin.com/in/yavuztas"
+            href="https://www.linkedin.com/in/yavuz-taş-33b395b2"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
